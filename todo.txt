@@ -1,0 +1,94 @@
+I have an existing PHP + MySQL based ecommerce website with:
+- Customer panel
+- Admin panel
+- Order system already working
+
+DO NOT break or modify existing features.
+DO NOT remove existing code.
+ONLY extend the system safely.
+
+I want to add a DELIVERY BOY (Courier) PANEL with the following strict requirements:
+
+===================================
+DELIVERY BOY SYSTEM REQUIREMENTS
+===================================
+
+1. USER ROLE
+- New role: "delivery_boy"
+- Delivery boys CANNOT register themselves
+- ONLY admin can create, edit, activate or deactivate delivery boy accounts
+- Delivery boys can ONLY login (no signup)
+
+2. ADMIN PANEL FEATURES
+- Add a new menu in admin navbar called: "Courier / Delivery"
+- Admin can:
+  - Create delivery boy account (name, phone, username, password)
+  - View all delivery boys
+  - See how many ACTIVE orders are assigned to each delivery boy
+  - Assign orders to delivery boys manually
+
+3. ORDER ASSIGNMENT RULES
+- Each delivery boy can have MAXIMUM 2 ACTIVE orders at a time
+- If a delivery boy already has 2 active orders, admin CANNOT assign more
+- Orders can only be assigned when status = "paid" or "confirmed"
+- Store assignment in database properly
+
+4. DELIVERY BOY PANEL
+- Separate login panel for delivery boys
+- After login, delivery boy can ONLY see:
+  - Orders assigned to him
+  - Customer name, phone, delivery location (inside school)
+  - Order items & total
+- Delivery boy CANNOT see admin panel or other orders
+
+5. ORDER STATUS FLOW
+- assigned → out_for_delivery → delivered
+- Delivery boy can mark order as "delivered"
+- Once delivered:
+  - Order is removed from active assignment count
+  - Admin can see completion time
+
+6. NOTIFICATION SYSTEM (NO FIREBASE)
+- When admin assigns an order:
+  - A notification is created in database
+  - Delivery boy sees "New Order Assigned" after login
+  - Use JS polling or AJAX (every 10–15 sec)
+
+7. DATABASE
+- Create necessary tables ONLY if missing:
+  - delivery_boys
+  - delivery_assignments
+  - delivery_notifications
+- Use foreign keys if possible
+- DO NOT change existing order table structure unless required
+
+8. SECURITY
+- Proper session handling
+- Role-based access control
+- Delivery boys cannot access admin URLs
+- Sanitize inputs (prepared statements)
+
+9. UI
+- Keep UI simple
+- Reuse existing CSS if possible
+- No heavy redesign
+
+10. DOCUMENTATION
+- Explain:
+  - What files were added
+  - What database tables were added
+  - How assignment logic works
+  - How notification works
+
+===================================
+IMPORTANT
+===================================
+- This is a SCHOOL PROJECT
+- Delivery happens ONLY inside school ground
+- No GPS or distance calculation
+- No payment handling for delivery boys
+- Keep everything SIMPLE & DEMO FRIENDLY
+
+Now analyze my existing code structure first,
+then implement this feature step-by-step
+without harming any existing functionality.
